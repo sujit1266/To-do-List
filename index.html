@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- <h1>To Do Practice 3</h1> -->
+        <input class="js-input1" type="text" placeholder="Todo name" onkeydown="
+            checkEnter(event);
+    ">
+        <input type="date" class="js-date-input">
+        <button class="add-button">Add</button>
+        <div class="js-show-output todo-grid">
+
+        </div>
+    </div>
+    <script>
+        const Arr = JSON.parse(localStorage.getItem('Arr')) || [];
+
+
+        function checkEnter(event) {
+            if (event.key === 'Enter') {
+                addList();
+            }
+        }
+
+        document.querySelector('.add-button').addEventListener('click', () => {
+                addList();
+            });
+
+        function addListBody() {
+            let TodoAdddlist = '';
+            for (let i = 0; i < Arr.length; i++) {
+                const todo = Arr[i];
+                const html = `
+                    <div>${todo.name}</div>
+                    <div>${todo.date}</div>
+                    <button class="Output-button" 
+                    // onclick=
+                    // "
+                    //     Arr.splice(${i}, 1);
+                    //     addListBody();
+                    // "
+                    >Delete</button>
+                `;
+                TodoAdddlist += html;
+            }
+
+            saveToStorage();
+            document.querySelector('.js-show-output').innerHTML = TodoAdddlist;
+
+            document.querySelectorAll('.Output-button').forEach((deletebutton, index) => {
+                deletebutton.addEventListener('click', () => {
+                    Arr.splice(index, 1);
+                    addListBody();
+                });
+            });
+
+        }
+
+
+        addListBody();
+
+        function addList() {
+            const inputElement = document.querySelector('.js-input1');
+            const inputDate = document.querySelector('.js-date-input');
+            const date = inputDate.value;
+            const name = inputElement.value;
+            Arr.push({
+                name: name,
+                date: date
+            });
+            inputElement.value = '';
+            console.log(Arr);
+            addListBody();
+            // window.location.reload()
+        }
+
+        function saveToStorage() {
+            localStorage.setItem('Arr', JSON.stringify(Arr));
+        }
+    </script>
+</body>
+
+</html>

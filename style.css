@@ -1,0 +1,39 @@
+.todo-grid{
+    margin-top: 20px;
+    font-size: 1.8rem;
+    display: grid;
+    grid-template-columns: 400px 380px 150px;
+    gap: 20px;
+}
+
+.add-button{
+    font-size: 1.2rem;
+    height: 54px;
+    width: 150px;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.js-input1{
+    font-size: 1.2rem;
+    height: 50px;
+    width: 400px;
+}
+
+.js-date-input{
+    font-size: 1.2rem;
+    height: 50px;
+    width: 400px;
+}
+
+
+.Output-button{
+    font-size: 1.2rem;
+    height: 50px;
+    background-color: darkred;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+}
